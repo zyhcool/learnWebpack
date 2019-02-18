@@ -1,0 +1,15 @@
+{
+  "name": "learnwebpack",
+  "version": "1.0.0",
+  "description": "just for learning webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "author": "cool",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3"
+  }
+}
