@@ -1,12 +1,13 @@
 const webpack = require("webpack");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   // __dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录
   entry: __dirname + "/app/main.js", // 唯一入口文件
   output: {
     path: __dirname + "/build", // 输出路径
-    filename: "bundle-[hash].js", // 输出文件的文件名
+    filename: "bundle.js", // 输出文件的文件名
   },
   devtool: "eval-source-map",
   // 服务器，默认端口 8080；浏览器监听编辑器，实时编译修改后文件；
@@ -30,15 +31,6 @@ module.exports = {
         }, {
           loader: "css-loader", // style-loader在前， css-loader在后
         }],
-      }, {
-        test: /\.less$/,
-        use: [{
-          loader: 'style-loader' // creates style nodes from JS strings
-        }, {
-          loader: 'css-loader' // translates CSS into CommonJS
-        }, {
-          loader: "less-loader",
-        }]
       }
     ]
   },
@@ -47,5 +39,6 @@ module.exports = {
     new htmlWebpackPlugin({
       template: __dirname + "/app/index.template.html",
     }),
+    new ExtractTextPlugin("style.css")
   ]
 }
