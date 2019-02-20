@@ -1,12 +1,12 @@
 const webpack = require("webpack");
-const htmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode: "development",
   // __dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录
-  entry: __dirname + "/app/main.js", // 唯一入口文件
+  entry: ["./app/entry1.js","./app/entry2.js"],
   output: {
-    path: __dirname + "/build", // 输出路径
-    filename: "bundle-[hash].js", // 输出文件的文件名
+    path: __dirname + "/build",
+    filename: "[name].js",
   },
   devtool: "eval-source-map",
   // 服务器，默认端口 8080；浏览器监听编辑器，实时编译修改后文件；
@@ -23,29 +23,10 @@ module.exports = {
           loader: "babel-loader",
         },
         exclude: /node_modules/
-      }, {
-        test: /\.css$/,
-        use: [{
-          loader: "style-loader",
-        }, {
-          loader: "css-loader", // style-loader在前， css-loader在后
-        }],
-      }, {
-        test: /\.less$/,
-        use: [{
-          loader: 'style-loader' // creates style nodes from JS strings
-        }, {
-          loader: 'css-loader' // translates CSS into CommonJS
-        }, {
-          loader: "less-loader",
-        }]
-      }
+      },
     ]
   },
   plugins: [
     new webpack.BannerPlugin("版权所有，翻版必究"),
-    new htmlWebpackPlugin({
-      template: __dirname + "/app/index.template.html",
-    }),
   ]
 }
