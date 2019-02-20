@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   // __dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录
@@ -31,6 +32,15 @@ module.exports = {
         }, {
           loader: "css-loader", // style-loader在前， css-loader在后
         }],
+      }, {
+        test: /\.less$/,
+        use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader' // translates CSS into CommonJS
+        }, {
+          loader: "less-loader",
+        }]
       }
     ]
   },
@@ -39,6 +49,11 @@ module.exports = {
     new htmlWebpackPlugin({
       template: __dirname + "/app/index.template.html",
     }),
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin("style.css"),
+    new CleanWebpackPlugin("build/*.*",{
+      root: __dirname,
+      verbose: true,
+      dry: false,
+    }),
   ]
 }
