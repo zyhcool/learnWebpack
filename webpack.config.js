@@ -2,7 +2,6 @@ const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
-  // __dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录
   entry: ["./app/entry1.js","./app/entry2.js"],
   output: {
     path: __dirname + "/build",
@@ -13,7 +12,7 @@ module.exports = {
   devServer: {
     contentBase: "./build", // 本地服务器所加载的页面所在的目录
     historyApiFallback: true,
-    inline: true, // 实时刷新
+    inline: true, // 实时刷
   },
   module: {
     rules: [
