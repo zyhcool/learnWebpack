@@ -5,6 +5,7 @@ export default class Greeter extends React.Component {
   render() {
     return (
       <div>
+        {aa}
         {config.greetText}
       </div>
     )
